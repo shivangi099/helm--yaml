@@ -1,0 +1,32 @@
+namespace: shivangi
+mongodb:
+  replicaCount: 1
+  image:
+    repository: mongo
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 27017
+  env:
+    database: myDatabase
+
+userprofile:
+  replicaCount: 2
+  image:
+    repository: saiteja2502/userprofileretail
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 3130
+  env:
+    mongoUri: "mongodb://mongodb:27017/myDatabase"
+    sessionSecret: "1234"
+    emailUser: "chagantyteja2502@gmail.com"
+    emailPass: "yxoq bjuk rdnt alzp"
+    port: "3130"
+usernodeService:
+  type: LoadBalancer
+  port: 3130
+  targetPort: 3130
+
+

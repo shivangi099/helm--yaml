@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-usernode-js
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: userprofile
+spec:
+  type: {{ .Values.usernodeService.type }}
+  ports:
+    - port: {{ .Values.usernodeService.port }}
+      targetPort: {{ .Values.usernodeService.targetPort }}
+      protocol: TCP
+  selector:
+    app: userprofile
+
