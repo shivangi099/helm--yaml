@@ -20,3 +20,8 @@ spec:
         env:
         - name: MONGO_INITDB_DATABASE
           value: "myDatabase"  # Change this if necessary
+        envFrom:
+          - configMapRef:
+              name: mongodb-config
+          - secretRef:
+              name: mongodb-secret
